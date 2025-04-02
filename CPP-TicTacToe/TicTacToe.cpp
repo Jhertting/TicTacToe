@@ -4,7 +4,7 @@
 using namespace std;
 
 // initialize the board display
-TicTacToe::TicTacToe() : m_playerTurn(1)
+TicTacToe::TicTacToe() : m_playerTurn(0)
 {
 	for (int i = 0; i < 9; i++)
 	{
@@ -83,6 +83,7 @@ void TicTacToe::TakeTurn()
 		{
 			// mark board with X or O - accepts move
 			m_board[position - 1] = (m_playerTurn == 0) ? 'X' : 'O';
+			m_playerTurn = 1 - m_playerTurn;
 			validMove = true;
 		}
 	}
@@ -90,7 +91,26 @@ void TicTacToe::TakeTurn()
 
 void TicTacToe::Display() const
 {
+	// clear board from previous moves
 	system("cls");
+
+	cout << "Tic Tac Toe!\n";
+	cout << "Player 1 = X | Player 2 = O\n";
+
+	cout << endl;
+
+	// first row
+	cout << " " << m_board[0] << " | " << m_board[1] << " | " << m_board[2] << endl;
+	cout << "---|---|---" << endl;
+
+	// second row
+	cout << " " << m_board[3] << " | " << m_board[4] << " | " << m_board[5] << endl;
+	cout << "---|---|---" << endl;
+
+	// third row
+	cout << " " << m_board[6] << " | " << m_board[7] << " | " << m_board[8] << endl;
+
+	cout << endl;
 }
   
 
