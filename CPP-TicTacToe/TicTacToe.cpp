@@ -1,12 +1,14 @@
 #include "TicTacToe.h"
 #include <iostream>
 
+using namespace std;
+
 // initialize the board display
 TicTacToe::TicTacToe() : m_playerTurn(1)
 {
-	for (int i = 1; i < 10; i++)
+	for (int i = 0; i < 9; i++)
 	{
-		m_board[i] = 1 + i;
+		m_board[i] = '1' + i;
 	}
 }
 
@@ -21,13 +23,14 @@ bool TicTacToe::CheckWin() const
 	int winConditions[8][3] =
 	{
 		// row
-		{1,2,3}, {4, 5, 6}, {7, 8, 9},
+		{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+
 
 		// column
-		{1, 4, 7}, {2, 5, 8}, {3, 6, 9},
+		{0, 3, 6}, {1, 4, 7}, {2, 5, 8},
 
 		// diagonal
-		{1,5,9}, {3,5,7}
+		{0, 4, 8}, {2, 4, 6}
 	};
 
 	// checks each possible pattern for a win condition
@@ -46,7 +49,7 @@ bool TicTacToe::CheckWin() const
 bool TicTacToe::CheckTie() const
 {
 	// if no empty spaces remain = tie
-	for (int i = 1; i < 10; ++i) {
+	for (int i = 0; i < 9; ++i) {
 		if (m_board[i] != 'X' && m_board[i] != 'O') 
 		{
 			return false;  
@@ -55,4 +58,39 @@ bool TicTacToe::CheckTie() const
 	return true;
 }
 
+void TicTacToe::TakeTurn()
+{
+	int position;
+	bool validMove = false;
+
+	while (!validMove)
+	{
+		cout << "Enter a position (1-9): ";
+		cin >> position;
+
+		if (cin.fail() || position < 1 || position > 9)
+		{
+			// handles invalid input 
+			cout << "Invalid input. Please enter a number between 1 and 9.\n";
+			cin.clear();
+		}
+		else if (m_board[position - 1] == 'X' || m_board[position - 1] == 'O')
+		{
+			// handles case where position is already taken
+			cout << "That position is already used. Please choose another.\n";
+		}
+		else
+		{
+			// mark board with X or O - accepts move
+			m_board[position - 1] = (m_playerTurn == 0) ? 'X' : 'O';
+			validMove = true;
+		}
+	}
+}
+
+void TicTacToe::Display() const
+{
+	system("cls");
+}
+  
 
