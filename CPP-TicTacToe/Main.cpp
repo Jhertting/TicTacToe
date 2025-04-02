@@ -1,8 +1,5 @@
-
 // This file is complete, and should not be modified!
-
 #include <iostream>
-
 #include "TicTacToe.h"
 
 bool PlayAgain();

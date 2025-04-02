@@ -1,6 +1,4 @@
-
 // This file is complete, and should not be modified!
-
 #pragma once
 
 class Game
