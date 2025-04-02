@@ -111,6 +111,20 @@ void TicTacToe::Display() const
 	cout << " " << m_board[6] << " | " << m_board[7] << " | " << m_board[8] << endl;
 
 	cout << endl;
+
+	// determine game result + display result
+	if (IsGameOver()) 
+	{
+		if (CheckWin()) 
+		{
+			char winner = m_playerTurn == 0 ? 'O' : 'X';
+			cout << "Player " << (winner == 'X' ? 1 : 2) << " wins!" << endl;
+		}
+		else if (CheckTie()) 
+		{
+			cout << "It's a tie!" << endl;
+		}
+	}
 }
   
 
